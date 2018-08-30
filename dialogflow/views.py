@@ -64,19 +64,20 @@ def message(request) :
     user_key = return_json_str['user_key']
     content_type = return_json_str['type']     
     
-    if len(user_key) <= 0 or len(content) <= 0:
+    if len(user_key) <= 0 or len(return_str) <= 0:
         speech = ERROR_MESSAGE
-    elif content == '대화하기':
+    elif return_str == '대화하기':
         speech = '안녕하세요! 전 피자 주문을 받는 챗봇입니다~'
     else:
-        speech = get_answer(content, user_key)
+        speech = get_answer(return_str, user_key)
+        #speech = "hello"
     
     return JsonResponse({
         'message' : {
         'text' : speech
         },
         'keyboard' : {
-        'type' : 'text' # 텍스트로 입력받기 위하여 키보드 타입을 text로 설정
+            'type' : 'text' # 텍스트로 입력받기 위하여 키보드 타입을 text로 설정
         }
     })
     """
@@ -99,5 +100,5 @@ def message(request) :
                         'buttons': ['1','2']
                 }
         })
+    
     """
- 
